@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://qmdbnxiyy2d4"]
+
+[ext_resource type="Script" uid="uid://2oe8wsf5vxqy" path="res://test_scene.gd" id="1_uhqqe"]
+[ext_resource type="PackedScene" uid="uid://bgdiot8ytmrmy" path="res://player.tscn" id="2_ia1lp"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6adnx"]
+sky_top_color = Color(0.15884438, 0.4931081, 0.5935299, 1)
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_uhqqe"]
+sky_material = SubResource("ProceduralSkyMaterial_6adnx")
+
+[sub_resource type="Environment" id="Environment_ia1lp"]
+background_mode = 2
+sky = SubResource("Sky_uhqqe")
+ambient_light_sky_contribution = 0.0
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6adnx"]
+albedo_color = Color(0.44878358, 0.7410744, 0.45335287, 1)
+roughness = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ia1lp"]
+albedo_color = Color(0.21026075, 0.7252162, 0.8624576, 1)
+roughness = 0.0
+
+[node name="TestScene" type="Node3D"]
+script = ExtResource("1_uhqqe")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ia1lp")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.024230957, -0.4724121, -1.3026123)
+use_collision = true
+size = Vector3(2.668335, 0.05517578, 3.6052246)
+material = SubResource("StandardMaterial3D_6adnx")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(0.32255536, 0, 0, 0, 1, 0, 0, 0, 1, -1.3862052, 0.037555963, -1.3026123)
+use_collision = true
+size = Vector3(0.5914917, 0.9630127, 3.6052246)
+material = SubResource("StandardMaterial3D_ia1lp")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(0.32255536, 0, 0, 0, 1, 0, 0, 0, 1, 1.2691402, 0.037555963, -1.3026123)
+use_collision = true
+size = Vector3(0.5914917, 0.9630127, 3.6052246)
+material = SubResource("StandardMaterial3D_ia1lp")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21855271, -0.19240344)
+text = "0"
+
+[node name="RigidBody3D" parent="." instance=ExtResource("2_ia1lp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.33203784, 0)
