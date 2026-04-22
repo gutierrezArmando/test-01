@@ -1,7 +1,6 @@
 extends Area3D
 @export var rotation_speed: float
 
-signal coinCollected
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,7 +14,7 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Player"):
-		emit_signal("coinCollected")
+		SoundManager.play_coin_sound()
 		queue_free()
 """	
 	if body is Player:
