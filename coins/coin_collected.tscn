@@ -10,7 +10,7 @@ material = SubResource("StandardMaterial3D_d6jgr")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d6jgr"]
 
-[node name="CoinCollected" type="Area3D"]
+[node name="CoinCollected" type="Area3D" groups=["Coleccionables"]]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_4kuim")

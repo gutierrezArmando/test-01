@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://q3sfxg0aj36y"]
+
+[ext_resource type="AudioStream" uid="uid://dxm55sovmvc5j" path="res://coins/Pickup_Coin12.ogg" id="1_70yv6"]
+
+[sub_resource type="GDScript" id="GDScript_imk4i"]
+script/source = "extends Node
+
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	var coins = get_tree().get_nodes_in_group(\"Coleccionables\")
+	for coin in coins:
+		coin.coinCollected.connect(_on_coinCollected)
+
+func _on_coinCollected():
+	audio_stream_player.play()
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="GameManager" type="Node"]
+script = SubResource("GDScript_imk4i")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_70yv6")

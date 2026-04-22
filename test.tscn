@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://p5py6j4k0oo3"]
+[gd_scene load_steps=9 format=3 uid="uid://p5py6j4k0oo3"]
 
 [ext_resource type="PackedScene" uid="uid://oy1fs40ohdek" path="res://player/player.tscn" id="1_37kl0"]
 [ext_resource type="PackedScene" uid="uid://c51xfgwmy4uue" path="res://coins/coin_collected.tscn" id="2_8uh7m"]
+[ext_resource type="PackedScene" uid="uid://q3sfxg0aj36y" path="res://game_manager.tscn" id="3_6uqi0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mf4mk"]
 sky_top_color = Color(0.061662085, 0.43387994, 0.774739, 1)
@@ -196,3 +197,13 @@ speed = 0.1
 [node name="CoinCollected" parent="." instance=ExtResource("2_8uh7m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.58375, 1.8525846, 0)
 rotation_speed = 0.15
+
+[node name="CoinCollected2" parent="." instance=ExtResource("2_8uh7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.069092, 1.8525846, 0)
+rotation_speed = 0.15
+
+[node name="CoinCollected3" parent="." instance=ExtResource("2_8uh7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.66698, 1.8525846, 0)
+rotation_speed = 0.15
+
+[node name="GameManager" parent="." instance=ExtResource("3_6uqi0")]

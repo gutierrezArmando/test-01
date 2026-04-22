@@ -5,6 +5,7 @@ extends RigidBody3D
 var mouse := 0.01
 #var speed := 0.1
 @export var speed: float
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
