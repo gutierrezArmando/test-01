@@ -15,6 +15,7 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Player"):
 		SoundManager.play_coin_sound()
+		SoundManager.add_point()
 		queue_free()
 """	
 	if body is Player:
