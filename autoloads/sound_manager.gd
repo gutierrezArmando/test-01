@@ -3,7 +3,10 @@ extends Node
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 var score := 0
-
+func add_point():
+	score+=1
+	print(score)
+	
 func play_coin_sound():
 	# .duplicate() permite que el sonido se solape si recoges 
 	# muchas monedas rápido sin que se corte el anterior
@@ -14,9 +17,7 @@ func play_coin_sound():
 	# Se destruye automáticamente al terminar para no llenar la memoria
 	new_player.finished.connect(new_player.queue_free)
 	
-func add_point():
-	score+=1
-	print(score)
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
