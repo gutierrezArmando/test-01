@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://p5py6j4k0oo3"]
+[gd_scene load_steps=9 format=3 uid="uid://p5py6j4k0oo3"]
 
 [ext_resource type="PackedScene" uid="uid://oy1fs40ohdek" path="res://player/player.tscn" id="1_37kl0"]
+[ext_resource type="PackedScene" uid="uid://c51xfgwmy4uue" path="res://coins/coin_collected.tscn" id="2_8uh7m"]
 [ext_resource type="PackedScene" uid="uid://gxvlj7nil6l" path="res://hud/hud.tscn" id="3_6uqi0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mf4mk"]
@@ -34,9 +35,9 @@ transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545
 shadow_enabled = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.844639, 1.2507449, -0.23519135)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.844639, 1.2507449, 0.37742996)
 use_collision = true
-size = Vector3(46.49878, 0.8165283, 7.084076)
+size = Vector3(46.49878, 0.8165283, 4.87368)
 material = SubResource("StandardMaterial3D_mf4mk")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
@@ -58,7 +59,27 @@ size = Vector3(46.49878, 2.607605, 0.7501831)
 material = SubResource("StandardMaterial3D_37kl0")
 
 [node name="Player" parent="." instance=ExtResource("1_37kl0")]
-transform = Transform3D(0.48999998, 0, 0, 0, 0.48999998, 0, 0, 0, 0.48999998, 11.906531, 1.7579455, -0.03893751)
+transform = Transform3D(-2.1418577e-08, 0, -0.48999995, 0, 0.48999995, 0, 0.48999995, 0, -2.1418577e-08, 11.906531, 1.7579455, -0.03893751)
 speed = 0.1
+
+[node name="CoinCollected" parent="." instance=ExtResource("2_8uh7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.58375, 1.8525846, 0)
+rotation_speed = 0.15
+
+[node name="CoinCollected2" parent="." instance=ExtResource("2_8uh7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.095098, 1.8525846, 0)
+rotation_speed = 0.15
+
+[node name="CoinCollected3" parent="." instance=ExtResource("2_8uh7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.61785, 1.8525846, 0)
+rotation_speed = 0.15
+
+[node name="CoinCollected4" parent="." instance=ExtResource("2_8uh7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.750872, 1.8525846, 0)
+rotation_speed = 0.15
+
+[node name="CoinCollected5" parent="." instance=ExtResource("2_8uh7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.410423, 1.8525846, 0)
+rotation_speed = 0.15
 
 [node name="HUD" parent="." instance=ExtResource("3_6uqi0")]

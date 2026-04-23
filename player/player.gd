@@ -2,7 +2,7 @@ class_name Player
 
 extends RigidBody3D
 @onready var spring_arm_3d: SpringArm3D = $SpringArm3D
-var mouse := 0.01
+var mouse := 0.005
 #var speed := 0.1
 @export var speed: float
 # Called when the node enters the scene tree for the first time.
@@ -14,7 +14,8 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		spring_arm_3d.rotation.x -= event.relative.y * mouse
 		spring_arm_3d.rotation.y -= event.relative.x * mouse
-		spring_arm_3d.rotation.x = clamp(spring_arm_3d.rotation.x, -PI/2, PI/4)
+		#spring_arm_3d.rotation.x = clamp(spring_arm_3d.rotation.x, -PI/2, PI/4)
+		spring_arm_3d.rotation.x = clamp(spring_arm_3d.rotation.x, deg_to_rad(-60), PI/4)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
