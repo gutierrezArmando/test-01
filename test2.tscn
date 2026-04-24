@@ -104,6 +104,5 @@ rotation_speed = 0.15
 [node name="HUD" parent="." instance=ExtResource("3_yerdr")]
 
 [node name="ChangeSceneArea" parent="." instance=ExtResource("4_2pks0")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14.9890995, 1.4329939, 0.48905444)
-collision_mask = 3
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14.9890995, 1.3483522, 0.48905444)
 nextScene = "res://test.tscn"

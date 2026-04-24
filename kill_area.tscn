@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv7wtql0lffj4"]
+
+[ext_resource type="Script" uid="uid://ctoleqrh1cu54" path="res://kill_area.gd" id="1_8lwfm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qctm6"]
+size = Vector3(200, 1, 200)
+
+[node name="KillArea" type="Area3D"]
+collision_mask = 3
+script = ExtResource("1_8lwfm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_qctm6")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

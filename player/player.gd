@@ -36,4 +36,5 @@ func kill():
 	GameManager.fade_out()
 	hide()
 	await GameManager.animation_player.animation_finished
+	GameManager.score=0
 	get_tree().call_deferred("reload_current_scene")

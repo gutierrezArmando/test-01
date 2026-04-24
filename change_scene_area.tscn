@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cdv1xxfppie2x"]
+[gd_scene load_steps=7 format=3 uid="uid://cdv1xxfppie2x"]
 
 [ext_resource type="Script" uid="uid://cot43rih6hvhr" path="res://change_scene_area.gd" id="1_ctyqb"]
+[ext_resource type="ArrayMesh" uid="uid://ct1ffd6nov6u0" path="res://OBJ format/door-large-open.obj" id="2_rr4gq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8asm6"]
 size = Vector3(1.8050537, 1, 1)
@@ -23,7 +24,7 @@ transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, -0.035247803, 0, 0)
 shape = SubResource("BoxShape3D_8asm6")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, -1.2371905, 0, 0)
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, -1.2371905, 0.104162335, 0)
 mesh = SubResource("CylinderMesh_rr4gq")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
@@ -32,12 +33,16 @@ mesh = SubResource("CylinderMesh_rr4gq")
 shape = SubResource("CylinderShape3D_mj7ab")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 1.1747361, 0, 0)
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 1.1747361, 0.104162335, 0)
 mesh = SubResource("CylinderMesh_rr4gq")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
 shape = SubResource("CylinderShape3D_mj7ab")
+
+[node name="DoorLargeOpen" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.8000001, 0, 0, 0, 1.8000001, 0, 0, 0, 1.8000001, -0.032492302, -0.5475446, 0.0060936213)
+mesh = ExtResource("2_rr4gq")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

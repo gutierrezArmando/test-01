@@ -1,15 +1,18 @@
-[gd_scene load_steps=14 format=3 uid="uid://p5py6j4k0oo3"]
+[gd_scene load_steps=15 format=3 uid="uid://p5py6j4k0oo3"]
 
 [ext_resource type="PackedScene" uid="uid://oy1fs40ohdek" path="res://player/player.tscn" id="1_37kl0"]
+[ext_resource type="ArrayMesh" uid="uid://q8il0oumkl11" path="res://OBJ format/block-grass-overhang-large.obj" id="1_g14j6"]
 [ext_resource type="PackedScene" uid="uid://c51xfgwmy4uue" path="res://coins/coin_collected.tscn" id="2_8uh7m"]
 [ext_resource type="PackedScene" uid="uid://gxvlj7nil6l" path="res://hud/hud.tscn" id="3_6uqi0"]
 [ext_resource type="PackedScene" uid="uid://cdv1xxfppie2x" path="res://change_scene_area.tscn" id="4_ppyta"]
 [ext_resource type="PackedScene" uid="uid://b55n6a8k7ekyw" path="res://Enemy/EnemyBG.tscn" id="5_ykrsh"]
+[ext_resource type="PackedScene" uid="uid://dv7wtql0lffj4" path="res://kill_area.tscn" id="7_vbegm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mf4mk"]
 sky_top_color = Color(0.061662085, 0.43387994, 0.774739, 1)
 sky_horizon_color = Color(0.67784494, 0.6847582, 0.5251967, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_bottom_color = Color(0.23921569, 0.654902, 0.48235294, 1)
+ground_horizon_color = Color(0.80784315, 0.85490197, 1, 1)
 
 [sub_resource type="Sky" id="Sky_37kl0"]
 sky_material = SubResource("ProceduralSkyMaterial_mf4mk")
@@ -21,11 +24,8 @@ ambient_light_color = Color(0.8175213, 0.8175213, 0.81752115, 1)
 ambient_light_sky_contribution = 0.0
 tonemap_mode = 2
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mf4mk"]
-albedo_color = Color(0.10266092, 0.6854177, 0.8485783, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_37kl0"]
-albedo_color = Color(0.16359085, 0.7140984, 0, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_vbegm"]
+size = Vector3(1.9543457, 0.92041016, 2.0224304)
 
 [sub_resource type="Animation" id="Animation_ykrsh"]
 resource_name = "EnemiesMovement"
@@ -34,7 +34,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("EnemyBg:position")
+tracks/0/path = NodePath("Enemies/EnemyBg:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -43,13 +43,25 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(1.1049461, 1.8118421, -0.8849394), Vector3(1.1049461, 1.8118421, 1.8520467), Vector3(1.1049461, 1.8118421, -0.8849394)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Enemies/EnemyBg2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(14.987537, 1.0583898, 3.4660442), Vector3(11.38025, 1.0583898, 3.4660442), Vector3(14.987537, 1.0583898, 3.4660442)]
+}
 
 [sub_resource type="Animation" id="Animation_g14j6"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("EnemyBg:position")
+tracks/0/path = NodePath("Enemies/EnemyBg:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -57,6 +69,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(1.1049461, 1.8118421, -0.8849394)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Enemies/EnemyBg2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(14.987537, 1.0583898, 3.4660442)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g14j6"]
@@ -71,62 +95,134 @@ _data = {
 environment = SubResource("Environment_8uh7m")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 1.8848171, 4.503622, 0)
+transform = Transform3D(-0.9863633, 0.14253283, -0.082291365, 2.7805946e-08, 0.49999994, 0.86602545, 0.16458273, 0.85421574, -0.49318165, 18.504845, 4.503622, 0)
 shadow_enabled = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.560934, 1.2507449, 0.37742996)
-use_collision = true
-size = Vector3(18.286072, 0.8165283, 4.87368)
-material = SubResource("StandardMaterial3D_mf4mk")
+[node name="Scene" type="Node3D" parent="."]
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.590685, 2.9649525, -1.5750961)
-use_collision = true
-size = Vector3(18.353699, 2.607605, 0.7501831)
-material = SubResource("StandardMaterial3D_37kl0")
+[node name="BlockGrassOverhangLarge" type="MeshInstance3D" parent="Scene"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.4622892, -0.36188698, 0.19089222)
+mesh = ExtResource("1_g14j6")
+skeleton = NodePath("../..")
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.62816, 2.9649525, 2.413743)
-use_collision = true
-size = Vector3(18.55072, 2.607605, 0.7501831)
-material = SubResource("StandardMaterial3D_37kl0")
+[node name="StaticBody3D" type="StaticBody3D" parent="Scene/BlockGrassOverhangLarge"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scene/BlockGrassOverhangLarge/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0057373047, 0.51788723, -0.0034637451)
+shape = SubResource("BoxShape3D_vbegm")
+
+[node name="BlockGrassOverhangLarge2" type="MeshInstance3D" parent="Scene"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.223682, -0.6709385, 0.19089222)
+mesh = ExtResource("1_g14j6")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Scene/BlockGrassOverhangLarge2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scene/BlockGrassOverhangLarge2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0057373047, 0.51788723, -0.0034637451)
+shape = SubResource("BoxShape3D_vbegm")
+
+[node name="BlockGrassOverhangLarge3" type="MeshInstance3D" parent="Scene"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 9.2320595, -1.0783453, 0.19089222)
+mesh = ExtResource("1_g14j6")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Scene/BlockGrassOverhangLarge3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scene/BlockGrassOverhangLarge3/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0057373047, 0.51788723, -0.0034637451)
+shape = SubResource("BoxShape3D_vbegm")
+
+[node name="BlockGrassOverhangLarge4" type="MeshInstance3D" parent="Scene"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 13.228864, -1.0783453, 0.19089222)
+mesh = ExtResource("1_g14j6")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Scene/BlockGrassOverhangLarge4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scene/BlockGrassOverhangLarge4/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0057373047, 0.51788723, -0.0034637451)
+shape = SubResource("BoxShape3D_vbegm")
+
+[node name="BlockGrassOverhangLarge5" type="MeshInstance3D" parent="Scene"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 13.228864, -1.0783453, 4.13344)
+mesh = ExtResource("1_g14j6")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Scene/BlockGrassOverhangLarge5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scene/BlockGrassOverhangLarge5/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0057373047, 0.51788723, -0.0034637451)
+shape = SubResource("BoxShape3D_vbegm")
+
+[node name="BlockGrassOverhangLarge6" type="MeshInstance3D" parent="Scene"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 13.228864, -1.5204172, 8.057005)
+mesh = ExtResource("1_g14j6")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Scene/BlockGrassOverhangLarge6"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scene/BlockGrassOverhangLarge6/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0057373047, 0.51788723, -0.0034637451)
+shape = SubResource("BoxShape3D_vbegm")
+
+[node name="Collecters" type="Node3D" parent="."]
+
+[node name="CoinCollected" parent="Collecters" instance=ExtResource("2_8uh7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.597927, 1.8525846, 0)
+rotation_speed = 0.15
+
+[node name="CoinCollected2" parent="Collecters" instance=ExtResource("2_8uh7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.109276, 1.5435331, 0)
+rotation_speed = 0.15
+
+[node name="CoinCollected3" parent="Collecters" instance=ExtResource("2_8uh7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6320267, 1.5435331, 0)
+rotation_speed = 0.15
+
+[node name="CoinCollected4" parent="Collecters" instance=ExtResource("2_8uh7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.765049, 1.1361263, 0)
+rotation_speed = 0.15
+
+[node name="CoinCollected5" parent="Collecters" instance=ExtResource("2_8uh7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.424601, 1.1361263, 0)
+rotation_speed = 0.15
+
+[node name="CoinCollected6" parent="Collecters" instance=ExtResource("2_8uh7m")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 13.263246, 1.1361263, 2.9654336)
+rotation_speed = 0.15
+
+[node name="CoinCollected7" parent="Collecters" instance=ExtResource("2_8uh7m")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 13.263246, 1.1361263, 5.0814304)
+rotation_speed = 0.15
+
+[node name="CoinCollected8" parent="Collecters" instance=ExtResource("2_8uh7m")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 13.263246, 0.69405437, 7.7141237)
+rotation_speed = 0.15
 
 [node name="Player" parent="." instance=ExtResource("1_37kl0")]
 transform = Transform3D(-2.1418577e-08, 0, -0.48999995, 0, 0.48999995, 0, 0.48999995, 0, -2.1418577e-08, -0.07772744, 1.7626166, -0.038675785)
 speed = 0.1
 
-[node name="CoinCollected" parent="." instance=ExtResource("2_8uh7m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.597927, 1.8525846, 0)
-rotation_speed = 0.15
-
-[node name="CoinCollected2" parent="." instance=ExtResource("2_8uh7m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.109276, 1.8525846, 0)
-rotation_speed = 0.15
-
-[node name="CoinCollected3" parent="." instance=ExtResource("2_8uh7m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6320267, 1.8525846, 0)
-rotation_speed = 0.15
-
-[node name="CoinCollected4" parent="." instance=ExtResource("2_8uh7m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.765049, 1.8525846, 0)
-rotation_speed = 0.15
-
-[node name="CoinCollected5" parent="." instance=ExtResource("2_8uh7m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.424601, 1.8525846, 0)
-rotation_speed = 0.15
-
 [node name="HUD" parent="." instance=ExtResource("3_6uqi0")]
 
 [node name="ChangeSceneArea" parent="." instance=ExtResource("4_ppyta")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 14.97242, 2.320374, 0.3792944)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.334782, 1.0087566, 9.615038)
 nextScene = "res://test2.tscn"
-
-[node name="EnemyBg" parent="." instance=ExtResource("5_ykrsh")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 1.1049461, 1.8118421, -0.8849394)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_g14j6")
 }
 autoplay = "EnemiesMovement"
+
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="EnemyBg" parent="Enemies" instance=ExtResource("5_ykrsh")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 1.1049461, 1.8118421, -0.8849394)
+
+[node name="EnemyBg2" parent="Enemies" instance=ExtResource("5_ykrsh")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 14.987537, 1.0583898, 3.4660442)
+
+[node name="KillArea" parent="." instance=ExtResource("7_vbegm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.86895, -0.9348402, 0)
