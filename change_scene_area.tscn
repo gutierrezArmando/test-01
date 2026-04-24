@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdv1xxfppie2x"]
+
+[ext_resource type="Script" uid="uid://cot43rih6hvhr" path="res://change_scene_area.gd" id="1_ctyqb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8asm6"]
+size = Vector3(1.8050537, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ctyqb"]
+albedo_color = Color(0.9948042, 0.23390952, 5.7756904e-07, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rr4gq"]
+material = SubResource("StandardMaterial3D_ctyqb")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_mj7ab"]
+
+[node name="ChangeSceneArea" type="Area3D"]
+collision_mask = 3
+script = ExtResource("1_ctyqb")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, -0.035247803, 0, 0)
+shape = SubResource("BoxShape3D_8asm6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, -1.2371905, 0, 0)
+mesh = SubResource("CylinderMesh_rr4gq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("CylinderShape3D_mj7ab")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 1.1747361, 0, 0)
+mesh = SubResource("CylinderMesh_rr4gq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
+shape = SubResource("CylinderShape3D_mj7ab")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://b55n6a8k7ekyw"]
+
+[ext_resource type="Script" uid="uid://b6alwmog1apal" path="res://Enemy/enemy_bg.gd" id="1_dxg6n"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jy7j0"]
+albedo_color = Color(1, 0.20784314, 0.043137256, 1)
+metallic = 1.0
+metallic_specular = 0.0
+roughness = 0.35
+emission_enabled = true
+emission = Color(0.57173777, 0, 0.037818257, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_jy7j0"]
+material = SubResource("StandardMaterial3D_jy7j0")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dxg6n"]
+
+[node name="EnemyBg" type="Area3D" groups=["Enemies"]]
+collision_mask = 2
+script = ExtResource("1_dxg6n")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.0079256, 0, 0, 0, 1.0079256, 0, 0, 0, 1.0079256, 0, 0, 0)
+mesh = SubResource("SphereMesh_jy7j0")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_dxg6n")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

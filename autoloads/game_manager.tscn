@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqtrf25wp5jmi"]
+
+[ext_resource type="Script" uid="uid://cul33hvue1xyw" path="res://autoloads/game_manager.gd" id="1_3ovu6"]
+
+[sub_resource type="Animation" id="Animation_3ovu6"]
+resource_name = "fadeIn"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.84705883, 0.84705883, 0.84705883, 1), Color(0.84705883, 0.84705883, 0.84705883, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_m0g3t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.84705883, 0.84705883, 0.84705883, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_es8io"]
+_data = {
+&"RESET": SubResource("Animation_m0g3t"),
+&"fadeIn": SubResource("Animation_3ovu6")
+}
+
+[node name="GameManager" type="Node"]
+script = ExtResource("1_3ovu6")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+modulate = Color(0.84705883, 0.84705883, 0.84705883, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_es8io")
+}
+autoplay = "fadeIn"

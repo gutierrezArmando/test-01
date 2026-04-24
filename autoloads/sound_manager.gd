@@ -1,11 +1,6 @@
 extends Node
 
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
-
-var score := 0
-func add_point():
-	score+=1
-	print(score)
 	
 func play_coin_sound():
 	# .duplicate() permite que el sonido se solape si recoges 

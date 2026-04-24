@@ -7,6 +7,7 @@ var mouse := 0.005
 @export var speed: float
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GameManager.fade_in()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	spring_arm_3d.top_level = true
 
@@ -30,3 +31,9 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	inputDirection = inputDirection.rotated(Vector3.UP, spring_arm_3d.rotation.y).normalized() * speed
 	
 	apply_central_impulse(Vector3(inputDirection.x, 0, inputDirection.z))
+
+func kill():
+	GameManager.fade_out()
+	hide()
+	await GameManager.animation_player.animation_finished
+	get_tree().call_deferred("reload_current_scene")

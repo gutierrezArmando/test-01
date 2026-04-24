@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://p5py6j4k0oo3"]
+[gd_scene load_steps=14 format=3 uid="uid://p5py6j4k0oo3"]
 
 [ext_resource type="PackedScene" uid="uid://oy1fs40ohdek" path="res://player/player.tscn" id="1_37kl0"]
 [ext_resource type="PackedScene" uid="uid://c51xfgwmy4uue" path="res://coins/coin_collected.tscn" id="2_8uh7m"]
 [ext_resource type="PackedScene" uid="uid://gxvlj7nil6l" path="res://hud/hud.tscn" id="3_6uqi0"]
+[ext_resource type="PackedScene" uid="uid://cdv1xxfppie2x" path="res://change_scene_area.tscn" id="4_ppyta"]
+[ext_resource type="PackedScene" uid="uid://b55n6a8k7ekyw" path="res://Enemy/EnemyBG.tscn" id="5_ykrsh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mf4mk"]
 sky_top_color = Color(0.061662085, 0.43387994, 0.774739, 1)
@@ -25,61 +27,106 @@ albedo_color = Color(0.10266092, 0.6854177, 0.8485783, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_37kl0"]
 albedo_color = Color(0.16359085, 0.7140984, 0, 1)
 
+[sub_resource type="Animation" id="Animation_ykrsh"]
+resource_name = "EnemiesMovement"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemyBg:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1.1049461, 1.8118421, -0.8849394), Vector3(1.1049461, 1.8118421, 1.8520467), Vector3(1.1049461, 1.8118421, -0.8849394)]
+}
+
+[sub_resource type="Animation" id="Animation_g14j6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemyBg:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.1049461, 1.8118421, -0.8849394)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g14j6"]
+_data = {
+&"EnemiesMovement": SubResource("Animation_ykrsh"),
+&"RESET": SubResource("Animation_g14j6")
+}
+
 [node name="Test" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_8uh7m")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 13.87064, 4.503622, 0)
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 1.8848171, 4.503622, 0)
 shadow_enabled = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.844639, 1.2507449, 0.37742996)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.560934, 1.2507449, 0.37742996)
 use_collision = true
-size = Vector3(46.49878, 0.8165283, 4.87368)
+size = Vector3(18.286072, 0.8165283, 4.87368)
 material = SubResource("StandardMaterial3D_mf4mk")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.701416, 2.0694141, -1.5750961)
-use_collision = true
-size = Vector3(46.49878, 0.8165283, 0.7501831)
-material = SubResource("StandardMaterial3D_37kl0")
-
 [node name="CSGBox3D3" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.701416, 2.9649525, -1.5750961)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.590685, 2.9649525, -1.5750961)
 use_collision = true
-size = Vector3(46.49878, 2.607605, 0.7501831)
+size = Vector3(18.353699, 2.607605, 0.7501831)
 material = SubResource("StandardMaterial3D_37kl0")
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.701416, 2.9649525, 2.413743)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.62816, 2.9649525, 2.413743)
 use_collision = true
-size = Vector3(46.49878, 2.607605, 0.7501831)
+size = Vector3(18.55072, 2.607605, 0.7501831)
 material = SubResource("StandardMaterial3D_37kl0")
 
 [node name="Player" parent="." instance=ExtResource("1_37kl0")]
-transform = Transform3D(-2.1418577e-08, 0, -0.48999995, 0, 0.48999995, 0, 0.48999995, 0, -2.1418577e-08, 11.906531, 1.7579455, -0.03893751)
+transform = Transform3D(-2.1418577e-08, 0, -0.48999995, 0, 0.48999995, 0, 0.48999995, 0, -2.1418577e-08, -0.07772744, 1.7626166, -0.038675785)
 speed = 0.1
 
 [node name="CoinCollected" parent="." instance=ExtResource("2_8uh7m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.58375, 1.8525846, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.597927, 1.8525846, 0)
 rotation_speed = 0.15
 
 [node name="CoinCollected2" parent="." instance=ExtResource("2_8uh7m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.095098, 1.8525846, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.109276, 1.8525846, 0)
 rotation_speed = 0.15
 
 [node name="CoinCollected3" parent="." instance=ExtResource("2_8uh7m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.61785, 1.8525846, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6320267, 1.8525846, 0)
 rotation_speed = 0.15
 
 [node name="CoinCollected4" parent="." instance=ExtResource("2_8uh7m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.750872, 1.8525846, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.765049, 1.8525846, 0)
 rotation_speed = 0.15
 
 [node name="CoinCollected5" parent="." instance=ExtResource("2_8uh7m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.410423, 1.8525846, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.424601, 1.8525846, 0)
 rotation_speed = 0.15
 
 [node name="HUD" parent="." instance=ExtResource("3_6uqi0")]
+
+[node name="ChangeSceneArea" parent="." instance=ExtResource("4_ppyta")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 14.97242, 2.320374, 0.3792944)
+nextScene = "res://test2.tscn"
+
+[node name="EnemyBg" parent="." instance=ExtResource("5_ykrsh")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 1.1049461, 1.8118421, -0.8849394)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_g14j6")
+}
+autoplay = "EnemiesMovement"
